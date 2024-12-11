@@ -1,5 +1,6 @@
 #!/bin/bash
 
+ cd /home/ec2-user/app
  sudo yum update -y
  sudo yum install -y yum-utils
  curl -sL https://rpm.nodesource.com/setup_16.x | sudo bash -
