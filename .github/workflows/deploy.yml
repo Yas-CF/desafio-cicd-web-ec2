@@ -52,23 +52,14 @@ jobs:
         run: |
           scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -r ./* ec2-user@${{ env.INSTANCE_IP }}:/home/ec2-user/app
 
-      - name: Install Node.js and PM2
+      - name: Install Node.js
         run: |
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ec2-user@${{ env.INSTANCE_IP }} "
             sudo yum update -y
             sudo yum install -y yum-utils
             curl -sL https://rpm.nodesource.com/setup_16.x | sudo bash -
             sudo yum install -y nodejs
-            sudo npm install -g pm2
+            sudo yum install -y coreutils
             cd /home/ec2-user/app
             npm install
-            pm2 start app.js -i max --name my-app-desafio
-            pm2 save
-            sudo env PATH=$PATH:/usr/bin pm2 startup systemd -u ec2-user --hp /home/ec2-user
-          "
-
-      - name: Verify Deploy
-        run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ec2-user@${{ env.INSTANCE_IP }} "
-            pm2 list
-          "
+            nohup node app.js > app.log 2>&1 &"
