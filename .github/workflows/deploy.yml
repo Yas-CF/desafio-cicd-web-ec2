@@ -1,4 +1,4 @@
-name: Deploy EC2
+##name: Deploy EC2
  
 on:
   push:
@@ -55,11 +55,6 @@ jobs:
       - name: Install Node.js
         run: |
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ec2-user@${{ env.INSTANCE_IP }} "
-            sudo yum update -y
-            sudo yum install -y yum-utils
-            curl -sL https://rpm.nodesource.com/setup_16.x | sudo bash -
-            sudo yum install -y nodejs
-            sudo yum install -y coreutils
-            cd /home/ec2-user/app
-            npm install
-            nohup node app.js > app.log 2>&1 &"
+          chmod +x setup.sh
+          bash setup.sh
+
