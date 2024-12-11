@@ -3,7 +3,7 @@ const axios = require('axios');
 const app = express();
 
 app.get('/', (req, res) => {
-    res.send('¡Hola, mundo desde Node.js!');
+    res.send('¡Hola, mundo desde Node.js en EC2 de AWS!');
 });
 
 const PORT = process.env.PORT || 3000;
