@@ -54,7 +54,7 @@ jobs:
 
       - name: Install Node.js
         run: |
-          cd /home/ec2-user/app
+          cd home/ec2-user/app
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ec2-user@${{ env.INSTANCE_IP }} "
             chmod +x setup.sh
             bash setup.sh
