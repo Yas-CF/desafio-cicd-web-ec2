@@ -1,0 +1,22 @@
+{
+  "name": "my-node-EC2",
+  "version": "1.0.0",
+  "description": "Proyecto básico de Node.js para CI/CD en EC2 AWS",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "jest",
+    "build": "echo 'Build ejecutado correctamente'"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "dependencies": {
+    "axios": "^1.0.0",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "supertest": "^6.3.0"
+  }
+}
