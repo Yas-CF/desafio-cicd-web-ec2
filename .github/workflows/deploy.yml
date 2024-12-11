@@ -57,4 +57,5 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ec2-user@${{ env.INSTANCE_IP }} "
           chmod +x setup.sh
           bash setup.sh
+          "
 
