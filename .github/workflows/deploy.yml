@@ -18,6 +18,12 @@ jobs:
           set -a
           source .env
           set +a
+          
+      - name: Validate environment variables
+        run: |
+          echo "AWS_REGION: $AWS_REGION"
+          echo "IMAGE_ID: $IMAGE_ID"
+          echo "INSTANCE_TYPE: $INSTANCE_TYPE"
          
       - name: Configure AWS CLI
         uses: aws-actions/configure-aws-credentials@v1
