@@ -24,6 +24,11 @@ jobs:
           echo "AWS_REGION: $AWS_REGION"
           echo "IMAGE_ID: $IMAGE_ID"
           echo "INSTANCE_TYPE: $INSTANCE_TYPE"
+
+          if [[ -z "$AWS_REGION" || -z "$IMAGE_ID" || -z "$INSTANCE_TYPE" ]]; then
+            echo "Error: Missing required environment variables."
+            exit 1
+          fi
          
       - name: Configure AWS CLI
         uses: aws-actions/configure-aws-credentials@v1
