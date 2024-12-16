@@ -12,35 +12,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        
-      - name: Load environment variables
-        uses: falti/dotenv-action@v1
-        with:
-          path: .env
-          
-      - name: Validate environment variables
-        run: |
-          echo "AWS_REGION: $AWS_REGION"
-          echo "IMAGE_ID: $IMAGE_ID"
-          echo "INSTANCE_TYPE: $INSTANCE_TYPE"
-
-          if [[ -z "$AWS_REGION" || -z "$IMAGE_ID" || -z "$INSTANCE_TYPE" ]]; then
-            echo "Error: Missing required environment variables."
-            exit 1
-          fi
          
       - name: Configure AWS CLI
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: $AWS_REGION
+          aws-region: us-east-1
 
       - name: Launch EC2
         run: |
           INSTANCE_ID=$(aws ec2 run-instances \
-            --image-id $IMAGE_ID \
-            --instance-type $INSTANCE_TYPE \
+            --image-id ami-0166fe664262f664c \
+            --instance-type t2.micro \
             --security-group-ids sg-02acdbda385a1243e \
             --subnet-id subnet-058881bcf950f863b \
             --key-name rsa-Cursodevops \
